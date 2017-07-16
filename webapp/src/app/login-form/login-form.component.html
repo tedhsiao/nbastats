@@ -1,0 +1,9 @@
+<form class="login-container">
+  <div>
+    <label>Username</label>
+    <input type="text" name="username" [(ngModel)]="username">
+    <label>Password</label>
+    <input type="password" name="password" [(ngModel)]="password">
+  </div>
+  <input type="submit" (click)="login($event)">
+</form>
