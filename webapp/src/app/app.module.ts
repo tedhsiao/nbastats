@@ -25,6 +25,10 @@ const appRoutes: Routes = [
   {
     path: "login",
     component: LoginComponent
+  },
+  {
+    path: "signup",
+    component: LoginComponent
   }
 ];
 

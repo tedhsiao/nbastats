@@ -1,9 +1,27 @@
-<form class="login-container">
-  <div>
-    <label>Username</label>
-    <input type="text" name="username" [(ngModel)]="username">
-    <label>Password</label>
-    <input type="password" name="password" [(ngModel)]="password">
+<div class="login-container">
+  <div class="header-container">
+    <button routerLink="/login" routerLinkActive="active">Log in</button>
+    <button routerLink="/signup" routerLinkActive="active" class="pull-right">Sign Up</button>
   </div>
-  <input type="submit" (click)="login($event)">
-</form>
+  <form *ngIf="currentPath === '/login' ; else signupTemplate" (ngSubmit)="login($event)">
+    <div>
+      <label>Username</label>
+      <input type="text" name="username" [(ngModel)]="username">
+      <label>Password</label>
+      <input type="password" name="password" [(ngModel)]="password">
+    </div>
+    <button type="submit">Login</button>
+  </form>
+
+  <ng-template #signupTemplate>
+    <form (ngSubmit)="signup($event)">
+      <div>
+        <label>Username</label>
+        <input type="text" name="username" [(ngModel)]="username">
+        <label>Password</label>
+        <input type="password" name="password" [(ngModel)]="password">
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+  </ng-template>
+</div>
