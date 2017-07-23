@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { HttpModule } from "@angular/http";
-
+import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { CollapseModule } from "ngx-bootstrap";
 
 import { AppComponent } from "./app.component";
@@ -12,6 +12,8 @@ import { AboutComponent } from "./about/about.component";
 import { NavComponent } from "./nav/nav.component";
 import { LoginComponent } from "./login/login.component";
 import { LoginFormComponent } from "./login-form/login-form.component";
+import { PlayersComponent } from "./players/players.component";
+import { PlayerStatsComponent } from './player-stats/player-stats.component';
 
 const appRoutes: Routes = [
   {
@@ -29,6 +31,10 @@ const appRoutes: Routes = [
   {
     path: "signup",
     component: LoginComponent
+  },
+  {
+    path: "player",
+    component: PlayersComponent
   }
 ];
 
@@ -39,14 +45,17 @@ const appRoutes: Routes = [
     HomeComponent,
     AboutComponent,
     LoginComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    PlayersComponent,
+    PlayerStatsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     CollapseModule,
     RouterModule.forRoot(appRoutes),
-    HttpModule
+    HttpModule,
+    NgxDatatableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

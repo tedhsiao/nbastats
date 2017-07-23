@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <h1>Search</h1>
+  <form name="searchPlayer" (submit)="searchPlayer($event)">
+    Player Name:&nbsp; <input type="text" class="form-control half-width" name="name" [(ngModel)]="playerName" />
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <div class="jumbotron jumbotron-fluid mt-5" *ngIf="player">
+    <div class="container">
+      <p class="lead">{{player.FirstName}}&nbsp;{{player.LastName}}</p>
+      <h4>{{team.City}} {{team.Name}} - #{{player.JerseyNumber}} </h4>
+    </div>
+  </div>
+  <app-player-stats *ngIf="player" [rows]="stats"></app-player-stats>
+</div>
