@@ -1,9 +1,27 @@
 <div class="container-fluid">
   <h1>Search</h1>
-  <form name="searchPlayer" (submit)="searchPlayer($event)">
-    Player Name:&nbsp; <input type="text" class="form-control half-width" name="name" [(ngModel)]="playerName" />
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+  <form class="container-fluid" name="searchPlayer" (submit)="searchPlayer($event)">
+    <div class="form-group col-md-4">
+      <label for="season">Season:&nbsp;</label>
+      <select class="form-control" name="season" [(ngModel)]="selectedSeason">
+      <option *ngFor="let season of seasons" [ngValue]="season">{{season}}</option>
+    </select>
+    </div>
+    <div class="col-md-4">
+      <label for="season">Player Name:&nbsp;</label>
+      <input type="text" class="form-control  col-md-4" name="name" [(ngModel)]="playerName" />
+    </div>
+    <div class="col-md-4">
+      <label class="col-md-12" for="season">&nbsp;</label>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
   </form>
+
+  <div class="jumbotron jumbotron-fluid mt-5" *ngIf="noPlayerFoundFlag">
+    <h4>No Player Found</h4>
+  </div>
+
   <div class="jumbotron jumbotron-fluid mt-5" *ngIf="player">
     <div class="container">
       <p class="lead">{{player.FirstName}}&nbsp;{{player.LastName}}</p>
@@ -11,4 +29,5 @@
     </div>
   </div>
   <app-player-stats *ngIf="player" [rows]="stats"></app-player-stats>
+
 </div>
