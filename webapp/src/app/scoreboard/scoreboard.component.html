@@ -1,0 +1,38 @@
+<div *ngIf="game" class="col-sm-6">
+  <div class="panel panel-default light-grey">
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>{{game.game.awayTeam.City}} {{game.game.awayTeam.Name}}</th>
+            <td>{{game.quarterSummary.quarter[0].awayScore}}</td>
+            <td>{{game.quarterSummary.quarter[1].awayScore}}</td>
+            <td>{{game.quarterSummary.quarter[2].awayScore}}</td>
+            <td>{{game.quarterSummary.quarter[3].awayScore}}</td>
+            <td>{{game.awayScore}}</td>
+          </tr>
+          <tr>
+            <th>{{game.game.homeTeam.City}} {{game.game.homeTeam.Name}}</th>
+            <td>{{game.quarterSummary.quarter[0].homeScore}}</td>
+            <td>{{game.quarterSummary.quarter[1].homeScore}}</td>
+            <td>{{game.quarterSummary.quarter[2].homeScore}}</td>
+            <td>{{game.quarterSummary.quarter[3].homeScore}}</td>
+            <td>{{game.homeScore}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="padding-left: 5px">@{{game.game.homeTeam.City}} {{game.game.location}} {{game.game.time}}</p>
+      <a href="#" class="btn btn-primary">Box Score</a>
+    </div>
+  </div>
+</div>

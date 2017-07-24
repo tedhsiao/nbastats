@@ -13,7 +13,9 @@ import { NavComponent } from "./nav/nav.component";
 import { LoginComponent } from "./login/login.component";
 import { LoginFormComponent } from "./login-form/login-form.component";
 import { PlayersComponent } from "./players/players.component";
-import { PlayerStatsComponent } from './player-stats/player-stats.component';
+import { PlayerStatsComponent } from "./player-stats/player-stats.component";
+import { ScheduleComponent } from "./schedule/schedule.component";
+import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 
 const appRoutes: Routes = [
   {
@@ -35,6 +37,10 @@ const appRoutes: Routes = [
   {
     path: "player",
     component: PlayersComponent
+  },
+  {
+    path: "schedule",
+    component: ScheduleComponent
   }
 ];
 
@@ -47,7 +53,9 @@ const appRoutes: Routes = [
     LoginComponent,
     LoginFormComponent,
     PlayersComponent,
-    PlayerStatsComponent
+    PlayerStatsComponent,
+    ScheduleComponent,
+    ScoreboardComponent
   ],
   imports: [
     BrowserModule,

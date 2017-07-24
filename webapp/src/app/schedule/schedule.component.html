@@ -1,0 +1,24 @@
+<h3>
+  Schedule
+</h3>
+
+<div class="container-fluid">
+  <form name="searchSchedule" class="row" (submit)="searchSchedule($event)">
+    <div class="form-group col-md-4">
+      <label for="season">Season:&nbsp;</label>
+      <select class="form-control" name="season" [(ngModel)]="selectedSeason">
+      <option *ngFor="let season of seasons" [ngValue]="season">{{season}}</option>
+    </select>
+    </div>
+    <div class="col-md-4">
+      <label class="col-md-12" for="season">&nbsp;</label>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </form>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <app-scoreboard *ngFor="let game of games" [game]="game"></app-scoreboard>
+  </div>
+</div>
