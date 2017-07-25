@@ -3,6 +3,19 @@
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
+.body-background {
+  background: url('assets/basketball-background-transparent.png') no-repeat
+    center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.light-text {
+  color: white !important;
+}
+
 .mt-5 {
   margin: 20px 0 0 0;
 }

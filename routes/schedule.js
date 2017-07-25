@@ -40,7 +40,6 @@ scheduleRouter.get("/boxscore/:season/:date/:teams", function(req, res) {
     }
   };
   request.get(options, (err, _res, body) => {
-    console.log(body);
     if (!err && _res.statusCode == 200) {
       console.log("GET handler for /schedule/boxscore route.");
       res.send(body);
