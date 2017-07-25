@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { Http } from "@angular/http";
+import { environment } from "../../environments/environment";
+
+let apiUrl = environment.apiUrl;
 
 @Component({
   selector: "app-box-score",
@@ -15,7 +18,8 @@ export class BoxScoreComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.http
         .get(
-          `http://localhost:8080/schedule/boxscore/${params.season}/${params.date}/${params.teams}`
+          apiUrl +
+            `schedule/boxscore/${params.season}/${params.date}/${params.teams}`
         )
         .map(res => res.json())
         .subscribe(res => {

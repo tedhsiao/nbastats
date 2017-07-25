@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Http } from "@angular/http";
 import { DatePickerOptions, DateModel } from "ng2-datepicker";
+import { environment } from "../../environments/environment";
+
+let apiUrl = environment.apiUrl;
 
 @Component({
   selector: "app-schedule",
@@ -29,7 +32,7 @@ export class ScheduleComponent implements OnInit {
     let date: string;
     date = this.date.formatted.split("-").join("");
     this.http
-      .get(`http://localhost:8080/schedule/${this.selectedSeason}/${date}`)
+      .get(apiUrl + `schedule/${this.selectedSeason}/${date}`)
       .map(res => res.json())
       .subscribe(res => {
         if (!res) {

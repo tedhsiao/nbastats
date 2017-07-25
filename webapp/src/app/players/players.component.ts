@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Http } from "@angular/http";
+import { environment } from "../../environments/environment";
+
+let apiUrl = environment.apiUrl;
 
 @Component({
   selector: "app-players",
@@ -27,9 +30,7 @@ export class PlayersComponent implements OnInit {
 
   searchPlayer(event: any) {
     this.http
-      .get(
-        `http://localhost:8080/player/${this.selectedSeason}/${this.playerName}`
-      )
+      .get(apiUrl + `player/${this.selectedSeason}/${this.playerName}`)
       .map(res => res.json())
       .subscribe(stats => {
         if (!stats.cumulativeplayerstats.playerstatsentry) {

@@ -9,7 +9,8 @@ playerRouter.get("/:season/:player", function(req, res) {
   let params = req.params;
   let _player = params.player.trim().replace(/\s+/g, "-");
   let season = params.season;
-  let _url = `https://www.mysportsfeeds.com/api/feed/pull/nba/${season}/cumulattive_player_stats.json`;
+  let _url = `https://api.mysportsfeeds.com/v1.1/pull/nba/${season}/cumulative_player_stats.json?player=${_player}&playerstats=MIN/G,+/-/G,BS/G,STL/G,TOV/G,PTS/G,AST/G,REB/G,FT%,FG%,3P%`;
+  console.log(_url);
   let options = {
     url: _url,
     headers: {
@@ -23,6 +24,7 @@ playerRouter.get("/:season/:player", function(req, res) {
     }
   };
   request.get(options, (err, _res, body) => {
+    console.log(body);
     if (!err && _res.statusCode == 200) {
       console.log("GET handler for /player route.");
       res.send(body);
