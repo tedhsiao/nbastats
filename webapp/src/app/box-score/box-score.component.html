@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div *ngIf="gameBoxScore" class="col-md-offset-4 mt-20">
+    <app-scoreboard [game]="gameBoxScore" [season]="season" [detailButton]="false"></app-scoreboard>
+  </div>
+
+  <div *ngIf="gameBoxScore" class="col-md-12">
+    <div class="col-md-12">
+      <h4>Away Team</h4>
+      <app-game-stats class="mb-20" [players]="gameBoxScore.awayTeam.awayPlayers.playerEntry"></app-game-stats>
+    </div>
+    <div class="col-md-12">
+      &nbsp;
+    </div>
+    <div class="col-md-12">
+      <h4>Home Team</h4>
+      <app-game-stats class="mb-20" [players]="gameBoxScore.homeTeam.homePlayers.playerEntry"></app-game-stats>
+    </div>
+  </div>
+</div>

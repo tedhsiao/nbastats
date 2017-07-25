@@ -5,6 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { HttpModule } from "@angular/http";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { CollapseModule } from "ngx-bootstrap";
+import { DatePickerModule } from "ng2-datepicker";
 
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
@@ -15,7 +16,9 @@ import { LoginFormComponent } from "./login-form/login-form.component";
 import { PlayersComponent } from "./players/players.component";
 import { PlayerStatsComponent } from "./player-stats/player-stats.component";
 import { ScheduleComponent } from "./schedule/schedule.component";
-import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { ScoreboardComponent } from "./scoreboard/scoreboard.component";
+import { BoxScoreComponent } from "./box-score/box-score.component";
+import { GameStatsComponent } from './game-stats/game-stats.component';
 
 const appRoutes: Routes = [
   {
@@ -41,6 +44,10 @@ const appRoutes: Routes = [
   {
     path: "schedule",
     component: ScheduleComponent
+  },
+  {
+    path: "boxscore/:season/:date/:teams",
+    component: BoxScoreComponent
   }
 ];
 
@@ -55,7 +62,9 @@ const appRoutes: Routes = [
     PlayersComponent,
     PlayerStatsComponent,
     ScheduleComponent,
-    ScoreboardComponent
+    ScoreboardComponent,
+    BoxScoreComponent,
+    GameStatsComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +72,8 @@ const appRoutes: Routes = [
     CollapseModule,
     RouterModule.forRoot(appRoutes),
     HttpModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    DatePickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

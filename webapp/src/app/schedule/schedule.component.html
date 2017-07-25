@@ -10,6 +10,13 @@
       <option *ngFor="let season of seasons" [ngValue]="season">{{season}}</option>
     </select>
     </div>
+
+    <div class="col-md-3">
+      <label for="date">Date:&nbsp;</label>
+      <div>
+        <ng2-datepicker name="date" [options]="options" [(ngModel)]="date"></ng2-datepicker>
+      </div>
+    </div>
     <div class="col-md-4">
       <label class="col-md-12" for="season">&nbsp;</label>
       <button type="submit" class="btn btn-primary">Search</button>
@@ -18,7 +25,8 @@
 </div>
 
 <div class="container-fluid">
-  <div class="row">
-    <app-scoreboard *ngFor="let game of games" [game]="game"></app-scoreboard>
+  <h4 *ngIf="!games">No games from search result</h4>
+  <div *ngIf="games" class="row">
+    <app-scoreboard *ngFor="let game of games" [game]="game" [season]="selectedSeason"></app-scoreboard>
   </div>
 </div>

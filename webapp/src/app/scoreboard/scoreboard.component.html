@@ -19,7 +19,7 @@
             <td>{{game.quarterSummary.quarter[1].awayScore}}</td>
             <td>{{game.quarterSummary.quarter[2].awayScore}}</td>
             <td>{{game.quarterSummary.quarter[3].awayScore}}</td>
-            <td>{{game.awayScore}}</td>
+            <td>{{sumScore(game.quarterSummary.quarter, 'awayScore')}}</td>
           </tr>
           <tr>
             <th>{{game.game.homeTeam.City}} {{game.game.homeTeam.Name}}</th>
@@ -27,12 +27,12 @@
             <td>{{game.quarterSummary.quarter[1].homeScore}}</td>
             <td>{{game.quarterSummary.quarter[2].homeScore}}</td>
             <td>{{game.quarterSummary.quarter[3].homeScore}}</td>
-            <td>{{game.homeScore}}</td>
+            <td>{{sumScore(game.quarterSummary.quarter, 'homeScore')}}</td>
           </tr>
         </tbody>
       </table>
       <p style="padding-left: 5px">@{{game.game.homeTeam.City}} {{game.game.location}} {{game.game.time}}</p>
-      <a href="#" class="btn btn-primary">Box Score</a>
+      <a href="#" class="btn btn-primary" [routerLink]="url" *ngIf="detailButton">Box Score</a>
     </div>
   </div>
 </div>

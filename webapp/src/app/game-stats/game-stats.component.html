@@ -1,0 +1,59 @@
+<div class="col-md-12">
+  <ngx-datatable class="material row-dividers" [columnMode]="'flex'" [headerHeight]="50" [rowHeight]="'auto'" [rows]="players">
+    <ngx-datatable-column name="Player Name" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.player.FirstName + ' ' + row.player.LastName}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Min" [flexGrow]="1">
+      <ng-template let-row="row" let-row="value" ngx-datatable-cell-template>
+        {{(row.stats.MinSeconds['#text'] / 60).toFixed(2)}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="FG" [flexGrow]="2">
+      <ng-template let-row="row" let-row="value" ngx-datatable-cell-template>
+        {{row.stats.Fg2PtAtt['#text']}}/{{row.stats.Fg2PtMade['#text']}} {{row.stats.Fg2PtPct['#text']}}%
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="3pt%" [flexGrow]="1">
+      <ng-template let-row="row" let-row="value" ngx-datatable-cell-template>
+        {{row.stats.Fg3PtPct['#text']}}%
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Ft%" [flexGrow]="1">
+      <ng-template let-row="row" let-row="value" ngx-datatable-cell-template>
+        {{row.stats.FtPct['#text']}}%
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Pts" [flexGrow]="1">
+      <ng-template let-row="row" let-row="value" ngx-datatable-cell-template>
+        {{row.stats.Pts['#text']}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Reb" [flexGrow]="1">
+      <ng-template let-row="row" let-row="value" ngx-datatable-cell-template>
+        {{row.stats.Reb['#text']}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Ast" [flexGrow]="1">
+      <ng-template let-row="row" let-row="value" ngx-datatable-cell-template>
+        {{row.stats.Ast['#text']}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Stl" [flexGrow]="1">
+      <ng-template let-row="row" let-row="value" ngx-datatable-cell-template>
+        {{row.stats.Stl['#text']}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Blk" [flexGrow]="1">
+      <ng-template let-row="row" let-row="value" ngx-datatable-cell-template>
+        {{row.stats.Blk['#text']}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="TO" [flexGrow]="1">
+      <ng-template let-row="row" let-row="value" ngx-datatable-cell-template>
+        {{row.stats.Tov['#text']}}
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>

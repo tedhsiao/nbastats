@@ -26,4 +26,26 @@ scheduleRouter.get("/:season/:date", function(req, res) {
   });
 });
 
+scheduleRouter.get("/boxscore/:season/:date/:teams", function(req, res) {
+  let params = req.params;
+  let season = params.season;
+  let gameid = params.date + "-" + params.teams;
+  let _url = `https://www.mysportsfeeds.com/api/feed/pull/nba/${season}/game_boxscore.json?gameid=${gameid}`;
+  let options = {
+    url: _url,
+    headers: {
+      Authorization:
+        "Basic " +
+        btoa(msf.mysportsfeedUsername + ":" + msf.mysportsfeedPassword)
+    }
+  };
+  request.get(options, (err, _res, body) => {
+    console.log(body);
+    if (!err && _res.statusCode == 200) {
+      console.log("GET handler for /schedule/boxscore route.");
+      res.send(body);
+    }
+  });
+});
+
 module.exports = scheduleRouter;
