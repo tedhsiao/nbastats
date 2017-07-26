@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "nodemon webapp/server/index.js",
+    "start": "nodemon server/index.js",
     "build": "ng build --env=prod",
     "test": "ng test",
     "lint": "ng lint",
