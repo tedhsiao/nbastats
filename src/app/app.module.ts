@@ -20,6 +20,7 @@ import { ScoreboardComponent } from "./scoreboard/scoreboard.component";
 import { BoxScoreComponent } from "./box-score/box-score.component";
 import { GameStatsComponent } from "./game-stats/game-stats.component";
 import { GameService } from "./services/game/game.service";
+import { PlayerService } from "./services/player/player.service";
 
 const appRoutes: Routes = [
   {
@@ -76,7 +77,7 @@ const appRoutes: Routes = [
     NgxDatatableModule,
     DatePickerModule
   ],
-  providers: [ScoreService, GameService],
+  providers: [PlayerService, GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
