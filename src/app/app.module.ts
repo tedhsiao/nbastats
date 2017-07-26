@@ -19,7 +19,6 @@ import { ScheduleComponent } from "./schedule/schedule.component";
 import { ScoreboardComponent } from "./scoreboard/scoreboard.component";
 import { BoxScoreComponent } from "./box-score/box-score.component";
 import { GameStatsComponent } from "./game-stats/game-stats.component";
-import { ScoreService } from "./services/score/score.service";
 import { GameService } from "./services/game/game.service";
 
 const appRoutes: Routes = [
