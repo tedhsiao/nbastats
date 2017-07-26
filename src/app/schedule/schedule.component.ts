@@ -1,9 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Http } from "@angular/http";
 import { DatePickerOptions, DateModel } from "ng2-datepicker";
-import { environment } from "../../environments/environment";
-
-let apiUrl = environment.apiUrl;
+import { GameService } from "../services/game/game.service";
 
 @Component({
   selector: "app-schedule",
@@ -17,7 +14,7 @@ export class ScheduleComponent implements OnInit {
   public date: DateModel;
   public options: DatePickerOptions;
 
-  constructor(private http: Http) {
+  constructor(private gameService: GameService) {
     for (let i = 2017; i > 2000; i--) {
       this.seasons.push(`${i}-playoff`);
       this.seasons.push(`${i - 1}-${i}-regular`);
@@ -31,15 +28,12 @@ export class ScheduleComponent implements OnInit {
   searchSchedule(event: any) {
     let date: string;
     date = this.date.formatted.split("-").join("");
-    this.http
-      .get(apiUrl + `schedule/${this.selectedSeason}/${date}`)
-      .map(res => res.json())
-      .subscribe(res => {
-        if (!res) {
-          this.games = null;
-          return;
-        }
-        this.games = res.scoreboard.gameScore;
-      });
+    this.gameService.getSchedules(this.selectedSeason, date).subscribe(res => {
+      if (!res) {
+        this.games = null;
+        return;
+      }
+      this.games = res.scoreboard.gameScore;
+    });
   }
 }

@@ -1,8 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Http } from "@angular/http";
-import { environment } from "../../environments/environment";
-
-let apiUrl = environment.apiUrl;
+import { PlayerService } from "../services/player/player.service";
 
 @Component({
   selector: "app-players",
@@ -18,7 +15,7 @@ export class PlayersComponent implements OnInit {
   public seasons: Array<string> = [];
   public selectedSeason: string;
 
-  constructor(private http: Http) {
+  constructor(private playerService: PlayerService) {
     for (let i = 2017; i > 2000; i--) {
       this.seasons.push(`${i - 1}-${i}-regular`);
       this.seasons.push(`${i}-playoff`);
@@ -29,9 +26,8 @@ export class PlayersComponent implements OnInit {
   ngOnInit() {}
 
   searchPlayer(event: any) {
-    this.http
-      .get(apiUrl + `player/${this.selectedSeason}/${this.playerName}`)
-      .map(res => res.json())
+    this.playerService
+      .getStats(this.selectedSeason, this.playerName)
       .subscribe(stats => {
         if (!stats.cumulativeplayerstats.playerstatsentry) {
           this.player = null;
