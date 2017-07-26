@@ -12,7 +12,7 @@ let apiUrl = environment.apiUrl;
 })
 export class BoxScoreComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private http: Http) {}
-  private gameBoxScore: any;
+  public gameBoxScore: any;
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -28,7 +28,6 @@ export class BoxScoreComponent implements OnInit {
             return;
           }
           this.gameBoxScore = res.gameboxscore;
-          console.log(this.gameBoxScore.homeTeam.homePlayers.playerEntry);
         });
     });
   }

@@ -10,13 +10,13 @@ let apiUrl = environment.apiUrl;
   styleUrls: ["./players.component.css"]
 })
 export class PlayersComponent implements OnInit {
-  private playerName: string;
-  private player: object;
-  private stats: object;
-  private team: object;
-  private noPlayerFoundFlag: boolean = false;
-  private seasons: Array<string> = [];
-  private selectedSeason: string;
+  public playerName: string;
+  public player: object;
+  public stats: object;
+  public team: object;
+  public noPlayerFoundFlag: boolean = false;
+  public seasons: Array<string> = [];
+  public selectedSeason: string;
 
   constructor(private http: Http) {
     for (let i = 2017; i > 2000; i--) {

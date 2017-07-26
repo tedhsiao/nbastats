@@ -11,11 +11,11 @@ let apiUrl = environment.apiUrl;
   styleUrls: ["./schedule.component.scss"]
 })
 export class ScheduleComponent implements OnInit {
-  private games: object = [];
-  private selectedSeason: string;
-  private seasons: Array<string> = [];
-  private date: DateModel;
-  private options: DatePickerOptions;
+  public games: object = [];
+  public selectedSeason: string;
+  public seasons: Array<string> = [];
+  public date: DateModel;
+  public options: DatePickerOptions;
 
   constructor(private http: Http) {
     for (let i = 2017; i > 2000; i--) {
