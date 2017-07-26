@@ -12,7 +12,7 @@
     </ngx-datatable-column>
     <ngx-datatable-column name="FG" [flexGrow]="2">
       <ng-template let-row="row" let-row="value" ngx-datatable-cell-template>
-        {{row.stats.Fg2PtAtt['#text']}}/{{row.stats.Fg2PtMade['#text']}} {{row.stats.Fg2PtPct['#text']}}%
+        {{row.stats.Fg2PtMade['#text']}}/{{row.stats.Fg2PtAtt['#text']}} {{row.stats.Fg2PtPct['#text']}}%
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="3pt%" [flexGrow]="1">

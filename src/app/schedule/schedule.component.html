@@ -11,15 +11,13 @@
     </select>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-8">
       <label for="date">Date:&nbsp;</label>
       <div>
         <ng2-datepicker name="date" [options]="options" [(ngModel)]="date"></ng2-datepicker>
+        <label class="col-md-12" for="season">&nbsp;</label>
+        <button type="submit" class="btn btn-primary">Search</button>
       </div>
-    </div>
-    <div class="col-md-4">
-      <label class="col-md-12" for="season">&nbsp;</label>
-      <button type="submit" class="btn btn-primary">Search</button>
     </div>
   </form>
 </div>
