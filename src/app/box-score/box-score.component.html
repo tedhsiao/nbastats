@@ -1,6 +1,10 @@
 <div class="container-fluid">
+  <div *ngIf="gameBoxScore" class="col-md-4">
+  </div>
   <div *ngIf="gameBoxScore" class="col-md-offset-4 mt-20">
     <app-scoreboard [game]="gameBoxScore" [season]="season" [detailButton]="false"></app-scoreboard>
+  </div>
+  <div *ngIf="gameBoxScore" class="col-md-4">
   </div>
 
   <div *ngIf="gameBoxScore" class="col-md-12">
