@@ -6,6 +6,10 @@ import { HttpModule } from "@angular/http";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { CollapseModule } from "ngx-bootstrap";
 import { DatePickerModule } from "ng2-datepicker";
+import { AngularFireModule } from "angularfire2";
+import { environment } from "../environments/environment";
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import { AngularFireAuthModule } from "angularfire2/auth";
 
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
@@ -76,7 +80,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpModule,
     NgxDatatableModule,
-    DatePickerModule
+    DatePickerModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [PlayerService, GameService, AuthService],
   bootstrap: [AppComponent]
