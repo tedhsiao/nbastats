@@ -1,5 +1,6 @@
 var mysql = require("mysql"),
   async = require("async");
+const config = require("./config/config");
 
 var PRODUCTION_DB = "nbastats",
   TEST_DB = "nbastats_test";
@@ -14,11 +15,10 @@ var state = {
 
 exports.connect = function(mode, done) {
   state.pool = mysql.createPool({
-    port: 3306,
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: mode === exports.MODE_PRODUCTION ? PRODUCTION_DB : TEST_DB
+    host: process.env.DATABASE_HOST || config.mysqlhost,
+    user: process.env.DATABASE_USER || config.mysqluser,
+    password: process.env.DATABASE_PASSWORD || config.mysqlpassword,
+    database: process.env.DATABASE_NAME || config.mysqldb
   });
 
   state.mode = mode;
@@ -31,9 +31,9 @@ exports.get = function() {
 
 exports.createDataBase = () => {
   var db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: ""
+    host: process.env.DATABASE_HOST || config.mysqlhost,
+    user: process.env.DATABASE_USER || config.mysqluser,
+    password: process.env.DATABASE_PASSWORD || config.mysqlpassword
   });
 
   db.connect(function(err) {

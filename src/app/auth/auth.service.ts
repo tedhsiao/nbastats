@@ -6,7 +6,7 @@ import { Http } from "@angular/http";
 import { environment } from "../../environments/environment";
 import { Observable } from "rxjs/Rx";
 
-let apiUrl = environment.apiUrl;
+let { redirectUrl, apiUrl } = environment;
 
 @Injectable()
 export class AuthService {
@@ -15,7 +15,7 @@ export class AuthService {
     domain: "thsiao.auth0.com",
     responseType: "token id_token",
     audience: "https://thsiao.auth0.com/userinfo",
-    redirectUri: "http://localhost:4200",
+    redirectUri: redirectUrl,
     scope: "openid profile email"
   });
 

@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   apiUrl: "api/",
+  redirectUrl: "https://nbastatsapp.herokuapp.com/",
   firebase: {
     apiKey: "AIzaSyCaktIl3mMzna0VvTrnKUbHZppZMjgqk3Q",
     authDomain: "sports-6a7d7.firebaseapp.com",

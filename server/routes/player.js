@@ -1,6 +1,6 @@
 const playerRouter = require("express").Router();
 const btoa = require("btoa");
-const msf = require("../config/publicKeys");
+const config = require("../config/config");
 const request = require("request");
 
 //@season in the format of year-playoff or year-year-regular
@@ -15,7 +15,7 @@ playerRouter.get("/:season/:player", function(req, res) {
     headers: {
       Authorization:
         "Basic " +
-        btoa(msf.mysportsfeedUsername + ":" + msf.mysportsfeedPassword)
+        btoa(config.mysportsfeedUsername + ":" + config.mysportsfeedPassword)
     },
     qs: {
       playerstats: "MIN/G,+/-/G,BS/G,STL/G,TOV/G,PTS/G,AST/G,REB/G,FT%,FG%,3P%",

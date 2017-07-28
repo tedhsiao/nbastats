@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   apiUrl: "http://localhost:8080/api/",
+  redirectUrl: "http://localhost:4200",
   firebase: {
     apiKey: "AIzaSyCaktIl3mMzna0VvTrnKUbHZppZMjgqk3Q",
     authDomain: "sports-6a7d7.firebaseapp.com",

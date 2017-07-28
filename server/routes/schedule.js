@@ -1,6 +1,6 @@
 const scheduleRouter = require("express").Router();
 const btoa = require("btoa");
-const msf = require("../config/publicKeys");
+const config = require("../config/config");
 const request = require("request");
 
 //@season in the format of year-playoff or year-year-regular
@@ -15,7 +15,7 @@ scheduleRouter.get("/:season/:date", function(req, res) {
     headers: {
       Authorization:
         "Basic " +
-        btoa(msf.mysportsfeedUsername + ":" + msf.mysportsfeedPassword)
+        btoa(config.mysportsfeedUsername + ":" + config.mysportsfeedPassword)
     }
   };
   request.get(options, (err, _res, body) => {
@@ -36,7 +36,7 @@ scheduleRouter.get("/boxscore/:season/:date/:teams", function(req, res) {
     headers: {
       Authorization:
         "Basic " +
-        btoa(msf.mysportsfeedUsername + ":" + msf.mysportsfeedPassword)
+        btoa(config.mysportsfeedUsername + ":" + config.mysportsfeedPassword)
     }
   };
   request.get(options, (err, _res, body) => {

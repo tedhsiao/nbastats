@@ -9,7 +9,9 @@ authRouter.post("/user", (req, res) => {
     family_name: id_token_payload.family_name,
     sub: id_token_payload.sub
   };
-
+  db.get().query(`select * from users`, (err, data) => {
+    console.log(data);
+  });
   db
     .get()
     .query(

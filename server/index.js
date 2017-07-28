@@ -6,6 +6,7 @@ const playerRouter = require("./routes/player");
 const scheduleRouter = require("./routes/schedule");
 const authRouter = require("./routes/auth");
 const bodyParser = require("body-parser");
+const config = require("./config/config");
 
 const API = "/api/";
 
@@ -31,8 +32,8 @@ app.get("/", function(req, res) {
 
 const db = require("./db");
 
-db.createDataBase();
-db.connect(db.MODE_PRODUCTION, function(err) {
+//db.createDataBase();
+db.connect(process.env.DATABASE_NAME || config.mysqldb, function(err) {
   if (err) {
     console.log("Database connection error");
   } else {
