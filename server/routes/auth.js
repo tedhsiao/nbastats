@@ -1,31 +1,31 @@
 const authRouter = require("express").Router();
+const db = require("../db");
 
-authRouter.get("/:season/:player", function(req, res) {
-  let params = req.params;
-  let _player = params.player.trim().replace(/\s+/g, "-");
-  let season = params.season;
-  let _url =
-    "https://www.mysportsfeeds.com/api/feed/pull/nba/" +
-    season +
-    "/cumulative_player_stats.json";
-  let options = {
-    url: _url,
-    headers: {
-      Authorization:
-        "Basic " +
-        btoa(msf.mysportsfeedUsername + ":" + msf.mysportsfeedPassword)
-    },
-    qs: {
-      playerstats: "MIN/G,+/-/G,BS/G,STL/G,TOV/G,PTS/G,AST/G,REB/G,FT%,FG%,3P%",
-      player: _player
-    }
+authRouter.post("/user", (req, res) => {
+  let { id_token_payload, id_token, access_token } = req.body;
+  let user = {
+    name: id_token_payload.name,
+    given_name: id_token_payload.given_name,
+    family_name: id_token_payload.family_name,
+    sub: id_token_payload.sub
   };
-  request.get(options, (err, _res, body) => {
-    if (!err && _res.statusCode == 200) {
-      console.log("GET handler for /player route.");
-      res.send(body);
-    }
-  });
+
+  db
+    .get()
+    .query(
+      `select * from users where sub = '${id_token_payload.sub}'`,
+      (err, data) => {
+        if (data.length) {
+          res.send({ message: "user exist in database" });
+          return;
+        }
+        db.get().query("INSERT INTO users SET ?", user, function(err, data) {
+          if (err) throw err;
+          console.log("Last record insert id:", data.insertId);
+          res.send({ message: "user created" });
+        });
+      }
+    );
 });
 
 module.exports = authRouter;
