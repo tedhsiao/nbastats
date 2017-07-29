@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
-import { HttpModule } from "@angular/http";
+import { HttpModule, RequestOptions, XHRBackend } from "@angular/http";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { CollapseModule } from "ngx-bootstrap";
 import { DatePickerModule } from "ng2-datepicker";
@@ -26,6 +26,7 @@ import { GameStatsComponent } from "./game-stats/game-stats.component";
 import { GameService } from "./services/game/game.service";
 import { PlayerService } from "./services/player/player.service";
 import { AuthService } from "./auth/auth.service";
+import { HttpService } from "./services/http/http.service";
 
 const appRoutes: Routes = [
   {
@@ -85,7 +86,18 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [PlayerService, GameService, AuthService],
+  providers: [
+    PlayerService,
+    GameService,
+    AuthService,
+    {
+      provide: HttpService,
+      useFactory: (backend: XHRBackend, options: RequestOptions) => {
+        return new HttpService(backend, options);
+      },
+      deps: [XHRBackend, RequestOptions]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
+import { HttpService } from "../http/http.service";
 import { environment } from "../../../environments/environment";
 import { Observable } from "rxjs/Rx";
 
@@ -7,7 +7,7 @@ let apiUrl = environment.apiUrl;
 
 @Injectable()
 export class PlayerService {
-  constructor(private http: Http) {}
+  constructor(private http: HttpService) {}
 
   getStats(season, player): Observable<any> {
     return this.http
