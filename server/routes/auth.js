@@ -7,7 +7,8 @@ authRouter.post("/user", (req, res) => {
     name: id_token_payload.name,
     given_name: id_token_payload.given_name,
     family_name: id_token_payload.family_name,
-    sub: id_token_payload.sub
+    sub: id_token_payload.sub,
+    email: id_token_payload.email
   };
   db.get().query(`select * from users`, (err, data) => {
     console.log(data);

@@ -28,6 +28,10 @@ import { PlayerService } from "./services/player/player.service";
 import { AuthService } from "./auth/auth.service";
 import { HttpService } from "./services/http/http.service";
 
+export function _useFactory(backend: XHRBackend, options: RequestOptions) {
+  return new HttpService(backend, options);
+}
+
 const appRoutes: Routes = [
   {
     path: "",
@@ -92,9 +96,7 @@ const appRoutes: Routes = [
     AuthService,
     {
       provide: HttpService,
-      useFactory: (backend: XHRBackend, options: RequestOptions) => {
-        return new HttpService(backend, options);
-      },
+      useFactory: _useFactory,
       deps: [XHRBackend, RequestOptions]
     }
   ],

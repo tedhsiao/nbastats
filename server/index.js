@@ -7,7 +7,7 @@ const scheduleRouter = require("./routes/schedule");
 const authRouter = require("./routes/auth");
 const bodyParser = require("body-parser");
 const config = require("./config/config");
-var jwt = require("express-jwt");
+const jwt = require("express-jwt");
 
 const API = "/api/";
 
@@ -23,25 +23,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(
-  jwt({
-    secret: "sY6IY99BPR_FD-RrFN5T9R9MP6yviMZf1PM0zH8FfRycdHLzmHVBj7kLjYeoOYgV",
-    credentialsRequired: false,
-    getToken: function fromHeaderOrQuerystring(req) {
-      if (
-        req.headers.authorization &&
-        req.headers.authorization.split(" ")[0] === "Bearer"
-      ) {
-        console.log(req.headers.authorization.split(" ")[1]);
-        return req.headers.authorization.split(" ")[1];
-      } else if (req.query && req.query.token) {
-        return req.query.token;
-      }
-      return null;
-    }
-  })
-);
-
 app.use(express.static(path.join(__dirname, "../dist")));
 app.use(API + "player", playerRouter);
 app.use(API + "schedule", scheduleRouter);
@@ -53,7 +34,7 @@ app.get("/", function(req, res) {
 
 const db = require("./db");
 
-//db.createDataBase();
+db.createDataBase();
 db.connect(process.env.DATABASE_NAME || config.mysqldb, function(err) {
   if (err) {
     console.log("Database connection error");
@@ -62,7 +43,7 @@ db.connect(process.env.DATABASE_NAME || config.mysqldb, function(err) {
   }
 });
 
-db.createTables();
+//db.createTables();
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "../dist/index.html"));
 // });

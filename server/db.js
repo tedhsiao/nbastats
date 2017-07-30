@@ -29,23 +29,7 @@ exports.get = function() {
   return state.pool;
 };
 
-exports.createDataBase = () => {
-  var db = mysql.createConnection({
-    host: process.env.DATABASE_HOST || config.mysqlhost,
-    user: process.env.DATABASE_USER || config.mysqluser,
-    password: process.env.DATABASE_PASSWORD || config.mysqlpassword
-  });
-
-  db.connect(function(err) {
-    if (err) throw err;
-    db.query("CREATE DATABASE IF NOT EXISTS nbastats", function(err, result) {
-      if (err) throw err;
-      console.log("Database created");
-    });
-  });
-};
-
-exports.createTables = () => {
+let createTables = () => {
   var pool = state.pool;
   if (!pool) return done(new Error("Missing database connection."));
 
@@ -56,6 +40,7 @@ exports.createTables = () => {
     family_name varchar(20) not null,
     name varchar(20) not null,    
     sub text not null,
+    email text not null,
     PRIMARY KEY (id)
    )`,
     (err, res) => {
@@ -63,6 +48,23 @@ exports.createTables = () => {
       console.log("User table created");
     }
   );
+};
+
+exports.createDataBase = () => {
+  var db = mysql.createConnection({
+    host: process.env.DATABASE_HOST || config.mysqlhost,
+    user: process.env.DATABASE_USER || config.mysqluser,
+    password: process.env.DATABASE_PASSWORD || config.mysqlpassword
+  });
+
+  db.connect(function(err) {
+    if (err) throw err;
+    db.query("CREATE DATABASE IF NOT EXISTS nbastats", function(err, result) {
+      //if (err) throw err;
+      console.log("Database created");
+      createTables();
+    });
+  });
 };
 
 exports.fixtures = function(data, done) {
