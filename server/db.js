@@ -32,13 +32,12 @@ exports.get = function() {
 let createTables = () => {
   var pool = state.pool;
   if (!pool) return done(new Error("Missing database connection."));
-
   pool.query(
     `CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
     given_name varchar(20) not null,
     family_name varchar(20) not null,
-    name varchar(20) not null,    
+    name varchar(20) not null,
     sub text not null,
     email text not null,
     phone varchar(12),
@@ -61,7 +60,7 @@ exports.createDataBase = () => {
   });
 
   db.connect(function(err) {
-    if (err) throw err;
+    //if (err) throw err;
     db.query("CREATE DATABASE IF NOT EXISTS nbastats", function(err, result) {
       //if (err) throw err;
       console.log("Database created");
