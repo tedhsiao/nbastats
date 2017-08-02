@@ -26,7 +26,9 @@ import { GameStatsComponent } from "./game-stats/game-stats.component";
 import { GameService } from "./services/game/game.service";
 import { PlayerService } from "./services/player/player.service";
 import { AuthService } from "./auth/auth.service";
+import { UserService } from "./services/user/user.service";
 import { HttpService } from "./services/http/http.service";
+import { ProfileComponent } from "./profile/profile.component";
 
 export function _useFactory(backend: XHRBackend, options: RequestOptions) {
   return new HttpService(backend, options);
@@ -58,6 +60,10 @@ const appRoutes: Routes = [
     component: ScheduleComponent
   },
   {
+    path: "profile",
+    component: ProfileComponent
+  },
+  {
     path: "boxscore/:season/:date/:teams",
     component: BoxScoreComponent
   }
@@ -76,7 +82,8 @@ const appRoutes: Routes = [
     ScheduleComponent,
     ScoreboardComponent,
     BoxScoreComponent,
-    GameStatsComponent
+    GameStatsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +101,7 @@ const appRoutes: Routes = [
     PlayerService,
     GameService,
     AuthService,
+    UserService,
     {
       provide: HttpService,
       useFactory: _useFactory,

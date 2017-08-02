@@ -15,9 +15,9 @@
         <li><a routerLink="/schedule" routerLinkActive="active">Schedule</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a *ngIf="auth.isAuthenticated()"> Welcome {{user.name}}!</a></li>
-        <li><a *ngIf="!auth.isAuthenticated()" (click)="auth.login()"> Log In</a></li>
-        <li><a *ngIf="auth.isAuthenticated()" (click)="auth.logout()">Log Out</a></li>
+        <li><a *ngIf="user" routerLink="/profile" routerLinkActive="active"> Welcome {{user.name}}!</a></li>
+        <li><a *ngIf="!user" (click)="auth.login()"> Log In</a></li>
+        <li><a *ngIf="user" (click)="auth.logout()">Log Out</a></li>
       </ul>
     </div>
   </div>

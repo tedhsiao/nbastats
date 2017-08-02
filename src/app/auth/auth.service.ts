@@ -53,7 +53,7 @@ export class AuthService {
     let id_token = localStorage.getItem("id_token");
     let access_token = localStorage.getItem("access_token");
     this.http
-      .post(`${apiUrl}auth/user`, {
+      .post(`${apiUrl}user`, {
         id_token_payload,
         access_token,
         id_token
@@ -76,7 +76,7 @@ export class AuthService {
     this.router.navigate(["/"]);
   }
 
-  public getUser(): object {
+  public getUser(): any {
     let user = JSON.parse(localStorage.getItem("id_token_payload"));
     return user ? user : null;
   }

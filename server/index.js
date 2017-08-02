@@ -4,7 +4,7 @@ const path = require("path");
 const port = process.env.PORT || 8080;
 const playerRouter = require("./routes/player");
 const scheduleRouter = require("./routes/schedule");
-const authRouter = require("./routes/auth");
+const userRouter = require("./routes/user");
 const bodyParser = require("body-parser");
 const config = require("./config/config");
 const jwt = require("express-jwt");
@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Auth-Token"
@@ -26,7 +26,7 @@ app.use(function(req, res, next) {
 app.use(express.static(path.join(__dirname, "../dist")));
 app.use(API + "player", playerRouter);
 app.use(API + "schedule", scheduleRouter);
-app.use(API + "auth", authRouter);
+app.use(API + "user", userRouter);
 
 app.get("/", function(req, res) {
   res.send("Hello World!");

@@ -41,6 +41,9 @@ let createTables = () => {
     name varchar(20) not null,    
     sub text not null,
     email text not null,
+    phone varchar(12),
+    gender varchar(6),
+    dob varchar(20),
     PRIMARY KEY (id)
    )`,
     (err, res) => {

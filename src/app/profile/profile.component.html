@@ -1,0 +1,70 @@
+<div class="container" *ngIf="dataReady">
+  <div class="row">
+    <div>
+      <br>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+
+
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{user.name}}</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="{{userPic}}" class="img-circle img-responsive"> </div>
+            <div class=" col-md-9 col-lg-9 ">
+              <table class="table table-user-information">
+                <tbody>
+                  <tr>
+                    <td>Email:</td>
+                    <td *ngIf="!edit">{{user.email}}</td>
+                    <td *ngIf="edit">
+                      <input type="text" [(ngModel)]="editedUser.email">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Date of Birth:</td>
+                    <td *ngIf="!edit">{{user.dob}}</td>
+                    <td *ngIf="edit">
+                      <input type="text" [(ngModel)]="editedUser.dob">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Gender:</td>
+                    <td *ngIf="!edit">{{user.gender}}</td>
+                    <td *ngIf="edit">
+                      <input type="text" [(ngModel)]="editedUser.gender">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Phone Number:</td>
+                    <td *ngIf="!edit">{{user.phone}}</td>
+                    <td *ngIf="edit">
+                      <input type="text" [(ngModel)]="editedUser.phone">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-footer">
+          <span class="pull-right">
+              <a data-original-title="Save user" class="btn btn-sm btn-success" type="button" *ngIf="edit" (click)="saveUserProfile($event)">
+                <i class="glyphicon glyphicon-floppy-saved"></i>
+              </a>            
+              <a data-original-title="Edit this user" type="button" class="btn btn-sm btn-warning" *ngIf="!edit" (click)="editProfile($event)">
+                <i class="glyphicon glyphicon-edit"></i>
+              </a>
+              <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">
+                <i class="glyphicon glyphicon-remove"></i>
+              </a>
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
