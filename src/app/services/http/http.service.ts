@@ -11,15 +11,16 @@ import {
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class HttpService extends Http {
   constructor(backend: XHRBackend, options: RequestOptions) {
+    super(backend, options);
     let token = localStorage.getItem("id_token"); // your custom token getter function here
     options.headers.set("Content-Type", "application/json");
     options.headers.set("X-Auth-Token", token);
     options.headers.set("Authorization", `bearer` + token);
-    super(backend, options);
   }
 
   request(
@@ -44,10 +45,13 @@ export class HttpService extends Http {
   private catchAuthError(self: HttpService) {
     // we have to pass HttpService's own instance here as `self`
     return (res: Response) => {
-      console.log(res);
       if (res.status === 401 || res.status === 403) {
         // if not authenticated
         console.log(res);
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("id_token_payload");
+        localStorage.removeItem("id_token");
+        localStorage.removeItem("expires_at");
       }
       return Observable.throw(res);
     };

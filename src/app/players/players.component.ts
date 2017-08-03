@@ -5,6 +5,7 @@ import {
   AngularFireDatabase,
   FirebaseObjectObservable
 } from "angularfire2/database";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-players",
@@ -26,7 +27,8 @@ export class PlayersComponent implements OnInit {
   constructor(
     private playerService: PlayerService,
     private db: AngularFireDatabase,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     for (let i = 2017; i > 2000; i--) {
       this.seasons.push(`${i - 1}-${i}-regular`);
@@ -46,9 +48,8 @@ export class PlayersComponent implements OnInit {
 
   searchPlayer(event: any) {
     this.addToListButton = true;
-    this.playerService
-      .getStats(this.selectedSeason, this.playerName)
-      .subscribe(stats => {
+    this.playerService.getStats(this.selectedSeason, this.playerName).subscribe(
+      stats => {
         if (!stats.cumulativeplayerstats.playerstatsentry) {
           this.player = null;
           this.noPlayerFoundFlag = true;
@@ -64,6 +65,10 @@ export class PlayersComponent implements OnInit {
             this.addToListButton = false;
           }
         });
-      });
+      },
+      err => {
+        this.router.navigate(["/player"]);
+      }
+    );
   }
 }

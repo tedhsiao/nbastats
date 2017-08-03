@@ -15,8 +15,8 @@ export class PlayerService {
       .map(res => {
         return res.json();
       })
-      .catch((error: any) =>
-        Observable.throw(error.json().error || "Server error")
-      );
+      .catch((error: any) => {
+        return Observable.throw(error || "Server error");
+      });
   }
 }
