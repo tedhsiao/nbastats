@@ -24,8 +24,28 @@
 
   <div class="jumbotron jumbotron-fluid mt-5" *ngIf="player">
     <div class="container">
+      <h5>
+        <div class="col-md-3 pull-right">
+          <table class="table table-bordered">
+            <tr>
+              <th>Pts</th>
+              <th>Rb</th>
+              <th>Ast</th>
+            </tr>
+            <tr>
+              <th>{{stats[0].stats.PtsPerGame['#text']}}</th>
+              <th>{{stats[0].stats.AstPerGame['#text']}}</th>
+              <th>{{stats[0].stats.RebPerGame['#text']}}</th>
+            </tr>
+          </table>
+          <button class="btn btn-primary" *ngIf="addToListButton" (click)="addToFavorite($event)">
+          Add to favorite
+        </button>
+        </div>
+      </h5>
+
       <p class="lead">{{player.FirstName}}&nbsp;{{player.LastName}}</p>
-      <h4>{{team.City}} {{team.Name}} - #{{player.JerseyNumber}} </h4>
+      <h4>{{team.City}} {{team.Name}} - #{{player.JerseyNumber}}</h4>
     </div>
   </div>
   <app-player-stats *ngIf="player" [rows]="stats"></app-player-stats>

@@ -12,5 +12,7 @@ export class PlayerStatsComponent implements OnInit {
 
   @Input() columns: object = [];
 
+  @Input() playerNameCol: boolean = false;
+
   ngOnInit() {}
 }

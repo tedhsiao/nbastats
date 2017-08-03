@@ -1,58 +1,63 @@
 <div class="">
   <ngx-datatable class="mt-5 material expandable" [rows]="rows" [columns]="columns" [columnMode]="'flex'">
+    <ngx-datatable-column *ngIf="playerNameCol" name="Player" [flexGrow]="1">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.player['FirstName'] + ' ' + row.player['LastName']}}
+      </ng-template>
+    </ngx-datatable-column>
     <ngx-datatable-column name="Min/Game" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{(row['MinSecondsPerGame']['#text']/60).toFixed(2)}}
+        {{(row.stats['MinSecondsPerGame']['#text']/60).toFixed(2)}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="+/-" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.PlusMinusPerGame['#text']}}
+        {{row.stats.PlusMinusPerGame['#text']}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="FG %" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.FgPct['#text']}}
+        {{row.stats.FgPct['#text']}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="FT %" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.FtPct['#text']}}
+        {{row.stats.FtPct['#text']}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="3pt %" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row['Fg3PtPct']['#text']}}
+        {{row.stats['Fg3PtPct']['#text']}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="Pt/Game" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.PtsPerGame['#text']}}
+        {{row.stats.PtsPerGame['#text']}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="Reb/Game" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.RebPerGame['#text']}}
+        {{row.stats.RebPerGame['#text']}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="Ast/Game" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.AstPerGame['#text']}}
+        {{row.stats.AstPerGame['#text']}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="TO/Game" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.TovPerGame['#text']}}
+        {{row.stats.TovPerGame['#text']}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="Stl/Game" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.StlPerGame['#text']}}
+        {{row.stats.StlPerGame['#text']}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="Blk/Game" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.BlkPerGame['#text']}}
+        {{row.stats.BlkPerGame['#text']}}
       </ng-template>
     </ngx-datatable-column>
   </ngx-datatable>
