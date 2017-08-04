@@ -5,6 +5,7 @@ const port = process.env.PORT || 8080;
 const playerRouter = require("./routes/player");
 const scheduleRouter = require("./routes/schedule");
 const userRouter = require("./routes/user");
+const leagueRouter = require("./routes/league");
 const bodyParser = require("body-parser");
 const config = require("./config/config");
 const jwt = require("express-jwt");
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, "../dist")));
 app.use(API + "player", playerRouter);
 app.use(API + "schedule", scheduleRouter);
 app.use(API + "user", userRouter);
+app.use(API + "league", leagueRouter);
 
 app.get("/", function(req, res) {
   res.send("Hello World!");

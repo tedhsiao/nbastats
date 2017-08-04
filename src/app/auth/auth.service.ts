@@ -62,7 +62,7 @@ export class AuthService {
         return res.json();
       })
       .subscribe(res => {
-        console.log(res);
+        localStorage.setItem("user_id", res.userId);
       });
   }
 
@@ -79,6 +79,11 @@ export class AuthService {
   public getUser(): any {
     let user = JSON.parse(localStorage.getItem("id_token_payload"));
     return user ? user : null;
+  }
+
+  public getUserId(): any {
+    let userId = localStorage.getItem("user_id");
+    return userId ? userId : null;
   }
 
   public isAuthenticated(): boolean {

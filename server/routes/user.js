@@ -19,22 +19,22 @@ authRouter.post("/", (req, res) => {
     sub: id_token_payload.sub,
     email: id_token_payload.email
   };
-  db.get().query(`select * from users`, (err, data) => {
-    console.log(data);
-  });
+  // db.get().query(`select * from users`, (err, data) => {
+  //   console.log(data);
+  // });
   db
     .get()
     .query(
       `select * from users where sub = '${id_token_payload.sub}'`,
       (err, data) => {
         if (data.length) {
-          res.send({ message: "user exist in database" });
+          res.send({ message: "user exist in database", userId: data[0].id });
           return;
         }
         db.get().query("INSERT INTO users SET ?", user, function(err, data) {
           if (err) throw err;
           console.log("Last record insert id:", data.insertId);
-          res.send({ message: "user created" });
+          res.send({ message: "user created", userId: data.insertId });
         });
       }
     );

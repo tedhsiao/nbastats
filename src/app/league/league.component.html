@@ -1,0 +1,11 @@
+<div>
+  <form name="newLeagueForm">
+    <input type="text" [(ngModel)]="newLeagueForm.name" name="name">
+    <button type="submit" (click)="createLeague($event)">Create</button>
+  </form>
+  <ul>
+    <li *ngFor="let league of leagues">
+      {{league.name}}
+    </li>
+  </ul>
+</div>

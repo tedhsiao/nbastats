@@ -33,6 +33,18 @@ let createTables = () => {
   var pool = state.pool;
   if (!pool) return done(new Error("Missing database connection."));
   pool.query(
+    `CREATE TABLE leagues (
+    id INT NOT NULL AUTO_INCREMENT,
+    name varchar(20) not null,
+    PRIMARY KEY (id)
+   )`,
+    (err, res) => {
+      //if (err) throw err;
+      console.log(err);
+      console.log("league table created");
+    }
+  );
+  pool.query(
     `CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
     given_name varchar(20) not null,
@@ -48,6 +60,17 @@ let createTables = () => {
     (err, res) => {
       //if (err) throw err;
       console.log("User table created");
+    }
+  );
+  pool.query(
+    `CREATE TABLE league_user (
+    league_id text references leagues(id),
+    user_id text references users(id) 
+   )`,
+    (err, res) => {
+      //if (err) throw err;
+      console.log(err);
+      console.log("league_user table created");
     }
   );
 };
