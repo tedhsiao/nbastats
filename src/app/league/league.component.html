@@ -1,11 +1,49 @@
-<div>
-  <form name="newLeagueForm">
-    <input type="text" [(ngModel)]="newLeagueForm.name" name="name">
-    <button type="submit" (click)="createLeague($event)">Create</button>
-  </form>
-  <ul>
-    <li *ngFor="let league of leagues">
-      {{league.name}}
-    </li>
-  </ul>
+<div class="container-fluid">
+  <div class="row">
+    <button class="pull-right margin-button" color="primary" md-raised-button (click)="openCreateLeagueDialog()">Create League</button>
+  </div>
+  <div class="row">
+    <ngx-datatable class="material" [rows]="leagues" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'">
+      <ngx-datatable-column name="Id">
+        <ng-template let-row="row" ngx-datatable-header-template>
+          <strong>Id</strong>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.id}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Name">
+        <ng-template let-row="row" ngx-datatable-header-template>
+          <strong>Name</strong>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.name}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Capacity">
+        <ng-template let-row="row" ngx-datatable-header-template>
+          <strong>Capacity</strong>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.capacity}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="# of Players">
+        <ng-template let-row="row" ngx-datatable-header-template>
+          <strong># of players</strong>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.numOfPlayers}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="action">
+        <ng-template let-row="row" ngx-datatable-header-template>
+          <strong>Action</strong>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button color="primary" md-raised-button (click)="openCreateLeagueDialog()">Join</button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
 </div>

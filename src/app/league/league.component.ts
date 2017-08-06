@@ -1,15 +1,23 @@
-import { Component, OnInit } from "@angular/core";
-import { LeagueService } from "../services/league/league.service";
+import { CreateLeagueDialogComponent } from './../create-league-dialog/create-league-dialog.component';
+import { Component, OnInit } from '@angular/core';
+import { LeagueService } from '../services/league/league.service';
+import { MdDialog, MdDialogRef } from '@angular/material';
+
+interface League {
+  name: string;
+  id: number;
+  numOfPlayers: number;
+  capacity: number;
+}
 
 @Component({
-  selector: "app-league",
-  templateUrl: "./league.component.html",
-  styleUrls: ["./league.component.scss"]
+  selector: 'app-league',
+  templateUrl: './league.component.html',
+  styleUrls: ['./league.component.scss']
 })
 export class LeagueComponent implements OnInit {
-  public newLeagueForm: any = {};
-  public leagues: object;
-  constructor(private leagueService: LeagueService) {}
+  public leagues: Array<League>;
+  constructor(private leagueService: LeagueService, public dialog: MdDialog) {}
 
   ngOnInit() {
     this.leagueService.getLeagues().subscribe(leagues => {
@@ -17,9 +25,13 @@ export class LeagueComponent implements OnInit {
     });
   }
 
-  createLeague(event) {
-    this.leagueService.createLeague(this.newLeagueForm.name).subscribe(res => {
-      console.log(res);
+  openCreateLeagueDialog() {
+    let dialogRef = this.dialog.open(CreateLeagueDialogComponent, {
+      width: '400px',
+      height: '260px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
     });
   }
 }

@@ -1,12 +1,12 @@
-var mysql = require("mysql"),
-  async = require("async");
-const config = require("./config/config");
+var mysql = require('mysql'),
+  async = require('async');
+const config = require('./config/config');
 
-var PRODUCTION_DB = "nbastats",
-  TEST_DB = "nbastats_test";
+var PRODUCTION_DB = 'nbastats',
+  TEST_DB = 'nbastats_test';
 
-exports.MODE_TEST = "mode_test";
-exports.MODE_PRODUCTION = "mode_production";
+exports.MODE_TEST = 'mode_test';
+exports.MODE_PRODUCTION = 'mode_production';
 
 var state = {
   pool: null,
@@ -31,17 +31,19 @@ exports.get = function() {
 
 let createTables = () => {
   var pool = state.pool;
-  if (!pool) return done(new Error("Missing database connection."));
+  if (!pool) return done(new Error('Missing database connection.'));
   pool.query(
     `CREATE TABLE leagues (
     id INT NOT NULL AUTO_INCREMENT,
     name varchar(20) not null,
+    numOfPlayers int,
+    capacity int, 
     PRIMARY KEY (id)
    )`,
     (err, res) => {
       //if (err) throw err;
       console.log(err);
-      console.log("league table created");
+      console.log('league table created');
     }
   );
   pool.query(
@@ -59,7 +61,7 @@ let createTables = () => {
    )`,
     (err, res) => {
       //if (err) throw err;
-      console.log("User table created");
+      console.log('User table created');
     }
   );
   pool.query(
@@ -70,7 +72,7 @@ let createTables = () => {
     (err, res) => {
       //if (err) throw err;
       console.log(err);
-      console.log("league_user table created");
+      console.log('league_user table created');
     }
   );
 };
@@ -84,9 +86,9 @@ exports.createDataBase = () => {
 
   db.connect(function(err) {
     //if (err) throw err;
-    db.query("CREATE DATABASE IF NOT EXISTS nbastats", function(err, result) {
+    db.query('CREATE DATABASE IF NOT EXISTS nbastats', function(err, result) {
       //if (err) throw err;
-      console.log("Database created");
+      console.log('Database created');
       createTables();
     });
   });
@@ -94,7 +96,7 @@ exports.createDataBase = () => {
 
 exports.fixtures = function(data, done) {
   var pool = state.pool;
-  if (!pool) return done(new Error("Missing database connection."));
+  if (!pool) return done(new Error('Missing database connection.'));
 
   var names = Object.keys(data.tables);
   async.each(
@@ -109,13 +111,13 @@ exports.fixtures = function(data, done) {
             });
 
           pool.query(
-            "INSERT INTO " +
+            'INSERT INTO ' +
               name +
-              " (" +
-              keys.join(",") +
-              ") VALUES (" +
-              values.join(",") +
-              ")",
+              ' (' +
+              keys.join(',') +
+              ') VALUES (' +
+              values.join(',') +
+              ')',
             cb
           );
         },
@@ -128,12 +130,12 @@ exports.fixtures = function(data, done) {
 
 exports.drop = function(tables, done) {
   var pool = state.pool;
-  if (!pool) return done(new Error("Missing database connection."));
+  if (!pool) return done(new Error('Missing database connection.'));
 
   async.each(
     tables,
     function(name, cb) {
-      pool.query("DELETE * FROM " + name, cb);
+      pool.query('DELETE * FROM ' + name, cb);
     },
     done
   );

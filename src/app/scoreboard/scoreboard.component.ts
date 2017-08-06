@@ -1,23 +1,22 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: "app-scoreboard",
-  templateUrl: "./scoreboard.component.html",
-  styleUrls: ["./scoreboard.component.scss"]
+  selector: 'app-scoreboard',
+  templateUrl: './scoreboard.component.html',
+  styleUrls: ['./scoreboard.component.scss']
 })
 export class ScoreboardComponent implements OnInit {
-  private url: string;
-  constructor() {}
-
   @Input() game: any;
   @Input() season: string;
   @Input() detailButton: boolean = true;
+  private url: string;
+  constructor() {}
 
   ngOnInit() {
-    let date = this.game.game.date.split("");
+    let date = this.game.game.date.split('');
     this.url = `/boxscore/${this.season}/${this.game.game.date
-      .split("-")
-      .join("")}/${this.game.game.awayTeam.Abbreviation}-${this.game.game
+      .split('-')
+      .join('')}/${this.game.game.awayTeam.Abbreviation}-${this.game.game
       .homeTeam.Abbreviation}`;
   }
 
