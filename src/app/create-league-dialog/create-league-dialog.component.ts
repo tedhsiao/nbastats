@@ -9,7 +9,7 @@ import { LeagueService } from '../services/league/league.service';
 })
 export class CreateLeagueDialogComponent implements OnInit {
   public newLeagueForm: any = {};
-  public leagues: object;
+
   constructor(
     private leagueService: LeagueService,
     public dialogRef: MdDialogRef<CreateLeagueDialogComponent>
@@ -19,7 +19,7 @@ export class CreateLeagueDialogComponent implements OnInit {
 
   createLeague(event) {
     this.leagueService.createLeague(this.newLeagueForm).subscribe(res => {
-      console.log(res);
+      this.dialogRef.close();
     });
   }
 }

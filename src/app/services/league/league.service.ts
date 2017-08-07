@@ -22,10 +22,22 @@ export class LeagueService {
       });
   }
 
-  getLeagues(): Observable<any> {
-    let userId = this.authService.getUserId();
+  joinLeague(leagueId): Observable<any> {
+    return this.http
+      .post(apiUrl + `league/join`, { leagueId })
+      .map(res => {
+        return res.json();
+      })
+      .catch((error: any) => {
+        return Observable.throw(error || 'Server error');
+      });
+  }
+
+  getLeagues(userId?: string): Observable<any> {
     let params: URLSearchParams = new URLSearchParams();
-    params.append('userId', userId);
+    if (userId) {
+      params.append('userId', userId);
+    }
     return this.http
       .get(apiUrl + `league`, { search: params })
       .map(res => {

@@ -2,7 +2,46 @@
   <div class="row">
     <button class="pull-right margin-button" color="primary" md-raised-button (click)="openCreateLeagueDialog()">Create League</button>
   </div>
+  <simple-notifications [options]="options" (onCreate)="created($event)" (onDestroy)="destroyed($event)"></simple-notifications>
   <div class="row">
+    <h3>Your Leagues</h3>
+    <ngx-datatable class="material" [rows]="userLeagues" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'">
+      <ngx-datatable-column name="Id">
+        <ng-template let-row="row" ngx-datatable-header-template>
+          <strong>Id</strong>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.id}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Name">
+        <ng-template let-row="row" ngx-datatable-header-template>
+          <strong>Name</strong>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.name}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Capacity">
+        <ng-template let-row="row" ngx-datatable-header-template>
+          <strong>Capacity</strong>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.capacity}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="# of Players">
+        <ng-template let-row="row" ngx-datatable-header-template>
+          <strong># of players</strong>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.numOfPlayers}}
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <div class="row">
+    <h3>All public Leagues</h3>
     <ngx-datatable class="material" [rows]="leagues" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'">
       <ngx-datatable-column name="Id">
         <ng-template let-row="row" ngx-datatable-header-template>
@@ -41,7 +80,7 @@
           <strong>Action</strong>
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <button color="primary" md-raised-button (click)="openCreateLeagueDialog()">Join</button>
+          <button color="primary" md-raised-button (click)="joinLeague($event, row.id)">Join</button>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>

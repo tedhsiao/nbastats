@@ -37,7 +37,8 @@ let createTables = () => {
     id INT NOT NULL AUTO_INCREMENT,
     name varchar(20) not null,
     numOfPlayers int,
-    capacity int, 
+    capacity int,
+    creator text,
     PRIMARY KEY (id)
    )`,
     (err, res) => {

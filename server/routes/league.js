@@ -8,26 +8,47 @@ const db = require('../db');
 
 leagueRouter.get('/', protectedAPI, (req, res) => {
   let { userId } = req.query;
-  db
-    .get()
-    .query(
-      `select leagues.name, leagues.id, leagues.capacity, leagues.numOfPlayers
+  if (userId) {
+    db
+      .get()
+      .query(
+        `select leagues.name, leagues.id, leagues.capacity, leagues.numOfPlayers, leagues.creator
                 from leagues
                 inner join league_user on league_user.league_id = leagues.id
                 where league_user.user_id = '${userId}'`,
-      (err, data) => {
-        if (err) {
-          console.log(err);
-          res.send(err);
-          return;
+        (err, data) => {
+          if (err) {
+            console.log(err);
+            res.send(err);
+            return;
+          }
+          if (data.length) {
+            res.send(data);
+            return;
+          }
+          res.send([]);
         }
-        if (data.length) {
-          res.send(data);
-          return;
+      );
+  } else {
+    db
+      .get()
+      .query(
+        `select leagues.name, leagues.id, leagues.capacity, leagues.numOfPlayers, leagues.creator
+                from leagues`,
+        (err, data) => {
+          if (err) {
+            console.log(err);
+            res.send(err);
+            return;
+          }
+          if (data.length) {
+            res.send(data);
+            return;
+          }
+          res.send([]);
         }
-        res.send([]);
-      }
-    );
+      );
+  }
 });
 
 leagueRouter.post('/', protectedAPI, (req, res) => {
@@ -61,6 +82,32 @@ leagueRouter.post('/', protectedAPI, (req, res) => {
         }
       }
     );
+});
+
+leagueRouter.post('/join', protectedAPI, (req, res) => {
+  let { leagueId } = req.body;
+  let { email } = req.user;
+  db.get();
+  db.get().query(`select users.id 
+               from users
+               where users.email='${email}'`, (err, users) => {
+    console.log(err);
+    if (users) {
+      db
+        .get()
+        .query(
+          `insert into league_user (user_id, league_id) values ('${users[0]
+            .id}', ${leagueId})`,
+          (err, data) => {
+            console.log(err);
+            if (data) {
+              console.log(data);
+              res.send({ message: `User ${users[0].id} joined ${leagueId}` });
+            }
+          }
+        );
+    }
+  });
 });
 
 module.exports = leagueRouter;

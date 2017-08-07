@@ -13,6 +13,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MdDialogModule } from '@angular/material';
 import { MdButtonModule } from '@angular/material';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -112,7 +113,8 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     NoopAnimationsModule,
     MdDialogModule,
-    MdButtonModule
+    MdButtonModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [
     PlayerService,
