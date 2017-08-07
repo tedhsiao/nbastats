@@ -13,6 +13,14 @@
   background-size: cover;
 }
 
+.align-center {
+  text-align: center;
+}
+
+.large-text {
+  font-size: 70px;
+}
+
 .light-text {
   color: white !important;
 }
@@ -23,6 +31,10 @@
 
 .light-grey {
   background-color: #d3d3d3;
+}
+
+.circle-list {
+  list-style-type: disc;
 }
 
 .datepicker-input {
