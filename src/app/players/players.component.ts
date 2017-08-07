@@ -1,16 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { PlayerService } from "../services/player/player.service";
-import { AuthService } from "../auth/auth.service";
+import { Component, OnInit } from '@angular/core';
+import { PlayerService } from '../services/player/player.service';
+import { AuthService } from '../services/auth/auth.service';
 import {
   AngularFireDatabase,
   FirebaseObjectObservable
-} from "angularfire2/database";
-import { Router } from "@angular/router";
+} from 'angularfire2/database';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-players",
-  templateUrl: "./players.component.html",
-  styleUrls: ["./players.component.css"]
+  selector: 'app-players',
+  templateUrl: './players.component.html',
+  styleUrls: ['./players.component.css']
 })
 export class PlayersComponent implements OnInit {
   public playerName: string;
@@ -67,7 +67,7 @@ export class PlayersComponent implements OnInit {
         });
       },
       err => {
-        this.router.navigate(["/player"]);
+        this.router.navigate(['/player']);
       }
     );
   }

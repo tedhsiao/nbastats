@@ -10,13 +10,13 @@
     </div>
     <div class="navbar-collapse collapse" [collapse]="isCollapsed">
       <ul class="nav navbar-nav">
-        <li><a routerLink="/league" routerLinkActive="active">League</a></li>
-        <li><a routerLink="/player" routerLinkActive="active">Players</a></li>
-        <li><a routerLink="/schedule" routerLinkActive="active">Schedule</a></li>
+        <li><a *ngIf="user" routerLink="/league" routerLinkActive="active">League</a></li>
+        <li><a *ngIf="user" routerLink="/player" routerLinkActive="active">Players</a></li>
+        <li><a *ngIf="user" routerLink="/schedule" routerLinkActive="active">Schedule</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a *ngIf="user" routerLink="/profile" routerLinkActive="active"> Welcome {{user.name}}!</a></li>
-        <li><a *ngIf="!user" (click)="auth.login()"> Log In</a></li>
+        <li><a *ngIf="!user" (click)="auth.login()">Log In</a></li>
         <li><a *ngIf="user" (click)="auth.logout()">Log Out</a></li>
       </ul>
     </div>

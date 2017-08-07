@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute, Params } from "@angular/router";
-import { GameService } from "../services/game/game.service";
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { GameService } from '../services/game/game.service';
 
 @Component({
-  selector: "app-box-score",
-  templateUrl: "./box-score.component.html",
-  styleUrls: ["./box-score.component.scss"]
+  selector: 'app-box-score',
+  templateUrl: './box-score.component.html',
+  styleUrls: ['./box-score.component.scss']
 })
 export class BoxScoreComponent implements OnInit {
   constructor(

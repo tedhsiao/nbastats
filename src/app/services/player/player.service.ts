@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { HttpService } from "../http/http.service";
-import { environment } from "../../../environments/environment";
-import { Observable } from "rxjs/Rx";
+import { Injectable } from '@angular/core';
+import { HttpService } from '../http/http.service';
+import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs/Rx';
 
 let apiUrl = environment.apiUrl;
 
@@ -16,7 +16,7 @@ export class PlayerService {
         return res.json();
       })
       .catch((error: any) => {
-        return Observable.throw(error || "Server error");
+        return Observable.throw(error || 'Server error');
       });
   }
 }

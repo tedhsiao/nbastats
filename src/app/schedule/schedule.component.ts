@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { DatePickerOptions, DateModel } from "ng2-datepicker";
-import { GameService } from "../services/game/game.service";
+import { Component, OnInit } from '@angular/core';
+import { DatePickerOptions, DateModel } from 'ng2-datepicker';
+import { GameService } from '../services/game/game.service';
 
 @Component({
-  selector: "app-schedule",
-  templateUrl: "./schedule.component.html",
-  styleUrls: ["./schedule.component.scss"]
+  selector: 'app-schedule',
+  templateUrl: './schedule.component.html',
+  styleUrls: ['./schedule.component.scss']
 })
 export class ScheduleComponent implements OnInit {
   public games: object = [];
@@ -27,7 +27,7 @@ export class ScheduleComponent implements OnInit {
 
   searchSchedule(event: any) {
     let date: string;
-    date = this.date.formatted.split("-").join("");
+    date = this.date.formatted.split('-').join('');
     this.gameService.getSchedules(this.selectedSeason, date).subscribe(res => {
       if (!res) {
         this.games = null;

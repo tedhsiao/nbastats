@@ -1,16 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { AuthService } from "../auth/auth.service";
-import { UserService } from "../services/user/user.service";
-import { PlayerService } from "../services/player/player.service";
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth/auth.service';
+import { UserService } from '../services/user/user.service';
+import { PlayerService } from '../services/player/player.service';
 import {
   AngularFireDatabase,
   FirebaseObjectObservable
-} from "angularfire2/database";
+} from 'angularfire2/database';
 
 @Component({
-  selector: "app-profile",
-  templateUrl: "./profile.component.html",
-  styleUrls: ["./profile.component.scss"]
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
   public user: object;
@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
         );
       }
       this.playerService
-        .getStats("2016-playoff", this.favPlayers.join(","))
+        .getStats('2016-playoff', this.favPlayers.join(','))
         .subscribe(res => {
           this.playerDataReady = true;
           this.players = res.cumulativeplayerstats.playerstatsentry;

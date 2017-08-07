@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
-import { environment } from "../../../environments/environment";
-import { Observable } from "rxjs/Rx";
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs/Rx';
 
 // Import RxJs required methods
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/catch";
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 let apiUrl = environment.apiUrl;
 
 @Injectable()
@@ -19,7 +19,7 @@ export class GameService {
         return res.json();
       })
       .catch((error: any) =>
-        Observable.throw(error.json().error || "Server error")
+        Observable.throw(error.json().error || 'Server error')
       );
   }
 
@@ -28,7 +28,7 @@ export class GameService {
       .get(apiUrl + `schedule/${season}/${date}`)
       .map(res => res.json())
       .catch((error: any) =>
-        Observable.throw(error.json().error || "Server error")
+        Observable.throw(error.json().error || 'Server error')
       );
   }
 }

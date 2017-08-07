@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { HttpService } from "../http/http.service";
-import { environment } from "../../../environments/environment";
-import { Observable } from "rxjs/Rx";
-import { URLSearchParams } from "@angular/http";
+import { Injectable } from '@angular/core';
+import { HttpService } from '../http/http.service';
+import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs/Rx';
+import { URLSearchParams } from '@angular/http';
 
 let { apiUrl } = environment;
 
@@ -18,7 +18,7 @@ export class UserService {
 
   getUserInfo(_userSub) {
     let params: URLSearchParams = new URLSearchParams();
-    params.append("sub", _userSub);
+    params.append('sub', _userSub);
     return this.http.get(`${apiUrl}user`, { search: params }).map(res => {
       return res.json();
     });

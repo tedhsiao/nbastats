@@ -2,7 +2,7 @@ import { CreateLeagueDialogComponent } from './../create-league-dialog/create-le
 import { Component, OnInit } from '@angular/core';
 import { LeagueService } from '../services/league/league.service';
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../services/auth/auth.service';
 import {
   NotificationsService,
   SimpleNotificationsComponent

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router } from '@angular/router';
 import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CollapseModule } from 'ngx-bootstrap';
@@ -30,7 +30,7 @@ import { BoxScoreComponent } from './box-score/box-score.component';
 import { GameStatsComponent } from './game-stats/game-stats.component';
 import { GameService } from './services/game/game.service';
 import { PlayerService } from './services/player/player.service';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './services/auth/auth.service';
 import { UserService } from './services/user/user.service';
 import { HttpService } from './services/http/http.service';
 import { LeagueService } from './services/league/league.service';
@@ -38,8 +38,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { LeagueComponent } from './league/league.component';
 import { CreateLeagueDialogComponent } from './create-league-dialog/create-league-dialog.component';
 
-export function _useFactory(backend: XHRBackend, options: RequestOptions) {
-  return new HttpService(backend, options);
+export function _useFactory(
+  backend: XHRBackend,
+  options: RequestOptions,
+  router: Router
+) {
+  return new HttpService(backend, options, router);
 }
 
 const appRoutes: Routes = [
@@ -125,7 +129,7 @@ const appRoutes: Routes = [
     {
       provide: HttpService,
       useFactory: _useFactory,
-      deps: [XHRBackend, RequestOptions]
+      deps: [XHRBackend, RequestOptions, Router]
     }
   ],
   bootstrap: [AppComponent]

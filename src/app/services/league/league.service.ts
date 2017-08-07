@@ -3,7 +3,7 @@ import { HttpService } from '../http/http.service';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs/Rx';
 import { URLSearchParams } from '@angular/http';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../auth/auth.service';
 
 let apiUrl = environment.apiUrl;
 
